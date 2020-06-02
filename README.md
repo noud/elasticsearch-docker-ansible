@@ -19,30 +19,42 @@ Cluster of 3 master hosts. This is the minimal cluster configuration.
 * [Dejavu](http://opensource.appbase.io/dejavu) web UI
 * [Postmaster](http://www.postman.com) (collection with test requests included)
 
-## Test cluster
+## Create test cluster
+
+Remove previous cluster.
 
 ```sh
 sudo rm -r /home/$USER/.ansible /data
+```
+
+Provisioning new cluster.
+
+```sh
 ansible-playbook -i _tst localhost.yml --ask-vault-pass
 ```
 
-## Create vault
+## Create Ansible vault
 
-Run the command
+Remove previous vault.
 
 ```sh
 rm group_vars/all/vault
+```
+
+Create new vault.
+
+```sh
 ansible-vault create group_vars/all/vault
 ```
 
 Add this content
 
 ```
-vault_server_user: noud
-vault_sudo_pass: 247Spies!
+vault_server_user: super_user
+vault_sudo_pass: secret
 vault_psql_pass: 
-vault_docker_hub_username: noud4
-vault_docker_hub_password: 247Spies!
+vault_docker_hub_username: super_user
+vault_docker_hub_password: secret
 ```
 
 # [📁 Portfolio](http://github.com/noud/portfolio#portfolio-repositories-index)
