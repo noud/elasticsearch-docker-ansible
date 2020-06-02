@@ -1,4 +1,4 @@
-# [Elastic](http://elastic.co)'s [Kibana](http://elastic.co/kibana), [ElasticSearch](http://elastic.co/elasticsearch) and [Apache](http://apache.org)'s [ManifoldCF™](http://manifoldcf.apache.org/index.html) in [Docker](http://docker.com) containers provisioned by [Red Hat](http://redhat.com)'s [Ansible](http://ansible.com)
+# [Elastic](http://elastic.co)'s [Kibana](http://elastic.co/kibana), [ElasticSearch](http://elastic.co/elasticsearch) and [Apache](http://apache.org)'s [ManifoldCF](http://manifoldcf.apache.org) in [Docker](http://docker.com) containers provisioned by [Red Hat](http://redhat.com)'s [Ansible](http://ansible.com)
 
 ![cluster](./docs/postman.png?raw=true "cluster")
 
