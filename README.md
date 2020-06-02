@@ -27,7 +27,7 @@ Remove previous cluster.
 sudo rm -r /home/$USER/.ansible /data
 ```
 
-Provisioning new cluster.
+Provision new cluster.
 
 ```sh
 ansible-playbook -i _tst localhost.yml --ask-vault-pass
