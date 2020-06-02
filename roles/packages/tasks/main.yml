@@ -1,0 +1,9 @@
+- name: Install global packages
+  yum:
+    update_cache: yes
+    name: "{{ global_packages }}"
+
+- name: Install OS packages
+  yum:
+    update_cache: yes
+    name: "{{ os_packages }}"

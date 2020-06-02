@@ -1,0 +1,26 @@
+
+# - name: Set the postgresql password in manifoldcf
+#   xml:
+#     path: /properties.xml
+#     xpath: /configuration/property@name@value
+#     value: "{{ psql_pass }}"
+
+- name: Copy Files
+  template: 
+    src: "{{ item }}" 
+    dest: "{{storage_location}}/docker/{{ item | basename }}"
+  with_fileglob:
+    - "../templates/{{ hostvars[inventory_hostname].group_names[0] }}/*"
+
+- name: pull all images
+  docker_image:
+    name: "{{item}}"
+    source: pull
+  with_items: "{{ all_images }}"
+
+- name: docker-compose run containers
+  docker_compose:
+    project_name: search
+    remove_orphans: yes
+    project_src: "{{storage_location}}/docker"
+  register: output

@@ -1,0 +1,137 @@
+version: '2.2'
+services:
+  kibana:
+    image: "{{kibana_image}}"
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_URL=http://elasticsearch:9300
+    env_file:
+      - ./kibana.env
+    ports:
+      # - "${KIBANA_PORT}:5601"
+      - "5601:5601"
+    depends_on:
+      - es01
+    network_mode: "host"
+    # networks:
+    #   - elastic
+    # network_mode: bridge
+  dejavu:
+    image: "{{dejavu_image}}"
+    ports:
+      - "1358:1358"
+    depends_on:
+      - es01
+    network_mode: "host"
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: es01
+    environment:
+      - node.name=es01
+      - discovery.seed_hosts=es02,es03
+    env_file:
+      - ./es.env
+      - ./es-cluster.env
+      - ./es-cors.env
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+      - "{{backup_location}}/repo2:/backup"
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+  es02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: es02
+    environment:
+      - node.name=es02
+      - discovery.seed_hosts=es01,es03
+    env_file:
+      - ./es.env
+      - ./es-cluster.env
+      - ./es-cors.env
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data02:/usr/share/elasticsearch/data
+      - "{{backup_location}}/repo2:/backup"
+    networks:
+      - elastic
+  es03:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: es03
+    environment:
+      - node.name=es03
+      - discovery.seed_hosts=es01,es02
+    env_file:
+      - ./es.env
+      - ./es-cluster.env
+      - ./es-cors.env
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data03:/usr/share/elasticsearch/data
+      - "{{backup_location}}/repo2:/backup"
+    networks:
+      - elastic
+  mf:
+    image: "{{crawler_image}}"
+    networks:
+      - crawler
+    depends_on:
+      - db
+    ports:
+      - "8345:8345"
+    volumes:
+      # - "./mcf-elasticsearch-connector-webCrawler.jar:/usr/share/manifoldcf/connector-lib/mcf-elasticsearch-connector-webCrawler.jar"
+      - "./connectors.xml:/usr/share/manifoldcf/connectors.xml"
+      - "./properties.xml:/usr/share/manifoldcf/example/properties.xml"
+      - "./start-options.env.unix:/usr/share/manifoldcf/example/start-options.env.unix"
+  phppgadmin:
+    image: "{{phppgadmin_image}}"
+    environment:
+      - "PHP_PG_ADMIN_SERVER_HOST=db"
+      - "PHP_PG_ADMIN_EXTRA_LOGIN_SECURITY=false"
+      - "PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}"
+      - "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}"
+    ports:
+        - "8082:80"
+    depends_on:
+      - db
+    # network_mode: "host"
+    # network_mode: bridge
+    networks:
+      - crawler
+  db:
+    image: "{{postgres_image}}"
+    ports:
+      - "5432:5432"
+    # network_mode: "host"
+    networks:
+      - crawler
+    env_file:
+      - ./db.env
+    volumes:
+      - "./my-postgres.conf:/etc/postgresql/postgresql.conf"
+      - "{{storage_location}}/db:/var/lib/postgresql/data/pgdata"
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
+volumes:
+  data01:
+    driver: local
+  data02:
+    driver: local
+  data03:
+    driver: local
+networks:
+  elastic:
+    driver: bridge
+  crawler:
+    driver: bridge

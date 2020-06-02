@@ -6,126 +6,197 @@
 	},
 	"item": [
 		{
-			"name": "twitter mappings",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"mappings\": {\n      \"properties\": {\n        \"type\": { \"type\": \"keyword\" }, \n        \"name\": { \"type\": \"text\" },\n        \"user_name\": { \"type\": \"keyword\" },\n        \"email\": { \"type\": \"keyword\" },\n        \"content\": { \"type\": \"text\" },\n        \"tweeted_at\": { \"type\": \"date\" }\n      }\n  }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "twitter",
+			"item": [
+				{
+					"name": "twitter mappings",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"mappings\": {\n      \"properties\": {\n        \"type\": { \"type\": \"keyword\" }, \n        \"name\": { \"type\": \"text\" },\n        \"user_name\": { \"type\": \"keyword\" },\n        \"email\": { \"type\": \"keyword\" },\n        \"content\": { \"type\": \"text\" },\n        \"tweeted_at\": { \"type\": \"date\" }\n      }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dev.localhost:9200/twitter/_doc",
+							"protocol": "http",
+							"host": [
+								"dev",
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"twitter",
+								"_doc"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://dev.localhost:9200/twitter/_doc",
-					"protocol": "http",
-					"host": [
-						"dev",
-						"localhost"
-					],
-					"port": "9200",
-					"path": [
-						"twitter",
-						"_doc"
-					]
+				{
+					"name": "twitter user kimchy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"user\", \n  \"name\": \"Shay Banon\",\n  \"user_name\": \"kimchy\",\n  \"email\": \"shay@kimchy.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dev.localhost:9200/twitter/_doc/user-kimchy",
+							"protocol": "http",
+							"host": [
+								"dev",
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"twitter",
+								"_doc",
+								"user-kimchy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "twitter tweet-1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"tweet\", \n  \"user_name\": \"kimchy\",\n  \"tweeted_at\": \"2017-10-24T09:00:00Z\",\n  \"content\": \"Types are going away\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dev.localhost:9200/twitter/_doc/tweet-1",
+							"protocol": "http",
+							"host": [
+								"dev",
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"twitter",
+								"_doc",
+								"tweet-1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "twitter search kimchy tweet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match\": {\n          \"user_name\": \"kimchy\"\n        }\n      },\n      \"filter\": {\n        \"match\": {\n          \"type\": \"tweet\" \n        }\n      }\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dev.localhost:9200/twitter/_search",
+							"protocol": "http",
+							"host": [
+								"dev",
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"twitter",
+								"_search"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "twitter user kimchy",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"type\": \"user\", \n  \"name\": \"Shay Banon\",\n  \"user_name\": \"kimchy\",\n  \"email\": \"shay@kimchy.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "api",
+			"item": [
+				{
+					"name": "add suggestion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keyword\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9200/api/suggest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"api",
+								"suggest"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://dev.localhost:9200/twitter/_doc/user-kimchy",
-					"protocol": "http",
-					"host": [
-						"dev",
-						"localhost"
-					],
-					"port": "9200",
-					"path": [
-						"twitter",
-						"_doc",
-						"user-kimchy"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "twitter tweet-1",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"type\": \"tweet\", \n  \"user_name\": \"kimchy\",\n  \"tweeted_at\": \"2017-10-24T09:00:00Z\",\n  \"content\": \"Types are going away\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "suggestions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match\": {\n          \"keyword\":\"YO!\"\n        }\n      }\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dev.localhost:9200/api/_search",
+							"protocol": "http",
+							"host": [
+								"dev",
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"api",
+								"_search"
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "http://dev.localhost:9200/twitter/_doc/tweet-1",
-					"protocol": "http",
-					"host": [
-						"dev",
-						"localhost"
-					],
-					"port": "9200",
-					"path": [
-						"twitter",
-						"_doc",
-						"tweet-1"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "twitter search kimchy tweet",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match\": {\n          \"user_name\": \"kimchy\"\n        }\n      },\n      \"filter\": {\n        \"match\": {\n          \"type\": \"tweet\" \n        }\n      }\n    }\n  }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://dev.localhost:9200/twitter/_search",
-					"protocol": "http",
-					"host": [
-						"dev",
-						"localhost"
-					],
-					"port": "9200",
-					"path": [
-						"twitter",
-						"_search"
-					]
-				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "cluster health",
@@ -168,21 +239,9 @@
 		},
 		{
 			"name": "cluster nodes",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://dev.localhost:9200/_cat/nodes?v&pretty",
 					"protocol": "http",
@@ -204,6 +263,98 @@
 							"key": "pretty",
 							"value": null
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "indices",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://dev.localhost:9200/_cat/indices",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cat",
+						"indices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search using api",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"keyword\":\"test\",\n\t\"aggregation\":\"true\",\n\t\"highlight\":\"true\",\n\t\"offset\":\"0\",\n\t\"records\":\"10\",\n\t\"getContentBody\":\"true\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://dev.localhost:9200/api/search",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"api",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "suggestions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"keywordSuggester\": {\n        \"prefix\": \"test\",\n        \"completion\": {\n            \"field\": \"text\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/api/suggest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"api",
+						"suggest"
 					]
 				}
 			},

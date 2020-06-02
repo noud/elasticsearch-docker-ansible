@@ -1,0 +1,4 @@
+- name: Log into DockerHub
+  docker_login:
+    username: "{{docker_hub_username}}"
+    password: "{{docker_hub_password}}"

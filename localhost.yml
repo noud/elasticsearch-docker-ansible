@@ -1,0 +1,26 @@
+- hosts: localhost
+  user: super_user
+  become: yes
+
+  roles:
+    - role: packages
+
+    - role: docker
+
+    - role: virtual-memory
+      tags:
+        - memory
+
+    - role: files-directories
+      tags:
+        - directories
+
+    - role: docker-login
+      tags:
+        - deploy-changes
+
+    - role: compose
+      tags: 
+        - deploy-changes
+
+

@@ -1,0 +1,38 @@
+- name: Install Docker CE
+  yum:
+    name: docker-ce
+    state: latest
+  with_items: 
+    - "{{ os }}-docker"
+
+- name: create docker directory
+  file:
+    path: "/etc/docker"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  
+- name: docker daemon.json
+  template: 
+    src: "daemon.json"
+    dest: "/etc/docker/daemon.json"
+
+- name: Start docker
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    name: docker
+    state: started
+
+- name: Install pip packages
+  pip:
+    name: "{{ pip_packages }}"
+
+- name: create data docker directory
+  file:
+    path: "/data/docker"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root

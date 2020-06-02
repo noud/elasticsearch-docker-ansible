@@ -1,0 +1,20 @@
+- name: create directories
+  file:
+    path: "{{ storage_location }}/{{item}}"
+    state: directory
+    mode: 0755
+    owner: '1000'
+    group: '1000'
+  with_items:
+    - data
+    - synonyms
+    - db
+    - docker
+    - docker_data
+
+- name: create default synonyms.txt
+  copy:
+    content: 'jansen,janssen,jannsen'
+    dest: "{{ storage_location }}/synonyms/synonyms.txt"
+    owner: '1000'
+    group: '1000'
