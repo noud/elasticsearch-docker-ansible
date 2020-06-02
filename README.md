@@ -2,10 +2,13 @@
 
 ![elasticsearch-docker-ansible](./docs/elasticsearch-docker-ansible.png?raw=true "elasticsearch-docker-ansible")
 
+React and Vue front end microservices and ElasticSearch cluster having 3 to n nodes, 1 Kibana monitor node and 1 ManifoldCF Document Ingestion node.
+
 ## Clients
 
-* [Vue.js](http://vuejs.org/) front end development
-* [Dejavu](http://opensource.appbase.io/dejavu) web UI
+* Front end
+    * [React](http://reactjs.org) [Dejavu](http://opensource.appbase.io/dejavu) web UI
+    * [Vue.js](http://vuejs.org) front end development
 * [Postmaster](http://postman.com) (collection with test requests included)
 
 ## Services
