@@ -4,7 +4,7 @@
 
 ### [Kibana](http://elastic.co/kibana)
 
-![kibana](./docs/postman.png?raw=true "kibana")
+![kibana](./docs/kibana.png?raw=true "kibana")
 
 ### [ElasticSearch](http://elastic.co/elasticsearch)
 
