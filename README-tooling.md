@@ -38,4 +38,4 @@ vault_docker_hub_username: super_user
 vault_docker_hub_password: secret
 ```
 
-# [📁 ElasticSearch Docker Ansible](http://github.com/noud/elasticsearch-docker-ansible)
+# [📁 ElasticSearch Docker Ansible](http://github.com/noud/elasticsearch-docker-ansible#elastics-kibana-elasticsearch-and-apaches-manifoldcf-in-docker-containers-provisioned-by-red-hats-ansible)

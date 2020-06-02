@@ -24,4 +24,4 @@ Cluster of 3 master hosts. This is the minimal cluster configuration.
 
 ![phppgadmin](./docs/phppgadmin.png?raw=true "phppgadmin")
 
-# [📁 ElasticSearch Docker Ansible](http://github.com/noud/elasticsearch-docker-ansible)
+# [📁 ElasticSearch Docker Ansible](http://github.com/noud/elasticsearch-docker-ansible#elastics-kibana-elasticsearch-and-apaches-manifoldcf-in-docker-containers-provisioned-by-red-hats-ansible)

@@ -2,7 +2,7 @@
 
 ![elasticsearch-docker-ansible](./docs/elasticsearch-docker-ansible.png?raw=true "elasticsearch-docker-ansible")
 
-React and Vue.js front end microservices and ElasticSearch cluster having 3 to n nodes, 1 Kibana monitor node and 1 ManifoldCF Document Ingestion node.
+React and Vue.js front end microservices and ElasticSearch cluster having 3 to n nodes, 1 Kibana monitor node and 1 ManifoldCF Document Ingestion node. ([individual screenshots](http://github.com/noud/elasticsearch-docker-ansible/blob/master/README-individual-screenshots.md))
 
 ## Clients
 
