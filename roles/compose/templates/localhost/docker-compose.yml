@@ -1,5 +1,24 @@
 version: '2.2'
 services:
+  vue:
+    image: "{{vue_image}}"
+    command: bash -c "apt-get -qq update && apt-get -qq -y install bzip2 && yarn install && yarn start"
+    volumes:
+      - .:/code
+    ports:
+      - "8080:8080"
+    networks:
+      - elastic
+    # network_mode: "bridge"
+    volumes:
+      - "{{workspace_location}}/vue-elasticsearch/example:/code"
+  dejavu:
+    image: "{{dejavu_image}}"
+    ports:
+      - "1358:1358"
+    depends_on:
+      - es01
+    network_mode: "host"
   kibana:
     image: "{{kibana_image}}"
     environment:
@@ -16,13 +35,6 @@ services:
     # networks:
     #   - elastic
     # network_mode: bridge
-  dejavu:
-    image: "{{dejavu_image}}"
-    ports:
-      - "1358:1358"
-    depends_on:
-      - es01
-    network_mode: "host"
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
     container_name: es01
