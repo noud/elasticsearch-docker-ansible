@@ -12,12 +12,20 @@
 
 Cluster of 3 master hosts. This is the minimal cluster configuration.
 
+### [ManifoldCF](http://manifoldcf.apache.org)
+
+![manifoldcf](./docs/manifoldcf.png?raw=true "manifoldcf")
+
+### [Postgresql](http://postgresql.org)
+
+![phppgadmin](./docs/phppgadmin.png?raw=true "phppgadmin")
+
 ## Clients
 
 ![dejavu](./docs/dejavu.png?raw=true "dejavu")
 
 * [Dejavu](http://opensource.appbase.io/dejavu) web UI
-* [Postmaster](http://www.postman.com) (collection with test requests included)
+* [Postmaster](http://postman.com) (collection with test requests included)
 
 ## Create test cluster
 
