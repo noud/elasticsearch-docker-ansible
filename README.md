@@ -8,7 +8,7 @@ React and Vue.js front end microservices and ElasticSearch cluster having 3 to n
 
 * Front end
     * [React](http://reactjs.org) [Dejavu](http://opensource.appbase.io/dejavu) web UI
-    * [Vue.js](http://vuejs.org) [front end development](http://github.com/noud/vue-elasticsearch/tree/elasticsearch7)
+    * [Vue.js](http://vuejs.org) (👨‍💻 [front end development](http://github.com/noud/vue-elasticsearch/tree/elasticsearch7) with [back end transformations](http://github.com/noud/elasticsearch-symfony) in [Symfony](http://symfony.com))
 * [Postmaster](http://postman.com) ([collection](http://github.com/noud/elasticsearch-docker-ansible/blob/master/docs/postman_collection.json))
 
 ## Services
