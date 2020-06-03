@@ -11,11 +11,11 @@
 				{
 					"name": "mappings",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"mappings\": {\n      \"properties\": {\n        \"type\": { \"type\": \"keyword\" }, \n        \"name\": { \"type\": \"text\" },\n        \"user_name\": { \"type\": \"keyword\" },\n        \"email\": { \"type\": \"keyword\" },\n        \"content\": { \"type\": \"text\" },\n        \"created_at\": { \"type\": \"date\" }\n      }\n  }\n}",
+							"raw": "{\n    \"properties\": {\n        \"type\": {\n            \"type\": \"keyword\"\n        },\n        \"name\": {\n            \"type\": \"text\"\n        },\n        \"user_name\": {\n            \"type\": \"keyword\"\n        },\n        \"keywords\": {\n            \"type\": \"text\"\n        },\n        \"created_at\": {\n            \"type\": \"date\"\n        }\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,7 +23,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://dev.localhost:9200/test/_doc",
+							"raw": "http://dev.localhost:9200/test/_mapping",
 							"protocol": "http",
 							"host": [
 								"dev",
@@ -32,7 +32,7 @@
 							"port": "9200",
 							"path": [
 								"test",
-								"_doc"
+								"_mapping"
 							]
 						}
 					},
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"type\": \"person\",\n  \"name\": \"Noud de Brouwer\",\n  \"user_name\": \"noud\",\n  \"email\": \"noud4@home.nl\"\n}",
+							"raw": "{\n  \"type\": \"person\",\n  \"name\": \"Noud de Brouwer\",\n  \"user_name\": \"noud\",\n  \"email\": \"noud4@home.nl\",\n  \"resouce_id\": \"xxx\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"type\": \"tag\",\n  \"user_name\": \"noud\",\n  \"created_at\": \"2020-01-24T09:00:00Z\",\n  \"tag\": \"JavaScript\"\n}",
+							"raw": "{\n  \"type\": \"tags\",\n  \"user_name\": \"noud\",\n  \"created_at\": \"2020-01-24T09:00:00Z\",\n  \"tag\": \"JavaScript\",\n  \"keywords\": \"JavaScript\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -107,7 +107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"type\": \"tag\",\n  \"user_name\": \"noud\",\n  \"created_at\": \"2020-05-24T09:00:00Z\",\n  \"tag\": \"PHP\"\n}",
+							"raw": "{\n  \"type\": \"tags\",\n  \"user_name\": \"noud\",\n  \"created_at\": \"2020-05-24T09:00:00Z\",\n  \"tag\": \"PHP\",\n  \"keywords\": \"PHP\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -138,7 +138,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match\": {\n          \"user_name\": \"noud\"\n        }\n      },\n      \"filter\": {\n        \"match\": {\n          \"type\": \"tag\" \n        }\n      }\n    }\n  }\n}",
+							"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match\": {\n          \"user_name\": \"noud\"\n        }\n      },\n      \"filter\": {\n        \"match\": {\n          \"type\": \"tags\" \n        }\n      }\n    }\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -156,6 +156,144 @@
 							"path": [
 								"test",
 								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "front end search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"index\": \"test\",\n    \"type\": \"tags\",\n    \"body\": {\n        \"query\": {\n            \"match\": {\n                \"keyword\": \"JavaScript\"\n            }\n        },\n        \"_source\": \"resource_id\",\n        \"aggs\": {\n            \"keyword\": {\n                \"terms\": {\n                    \"field\": \"keywords\",\n                    \"size\": 10\n                }\n            }\n        }\n    },\n    \"from\": 0,\n    \"size\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dev.localhost:9200/test/_search",
+							"protocol": "http",
+							"host": [
+								"dev",
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"test",
+								"_search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search user_name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match\": {\n          \"user_name\":\"noud\"\n        }\n      }\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://elasticsearch:9200/test/_search?from=0&size=10",
+							"protocol": "http",
+							"host": [
+								"elasticsearch"
+							],
+							"port": "9200",
+							"path": [
+								"test",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search tag",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"bool\": {\n      \"must\": {\n        \"match\": {\n          \"keywords\":\"JavaScript\"\n        }\n      }\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://elasticsearch:9200/test/_search?from=0&size=10",
+							"protocol": "http",
+							"host": [
+								"elasticsearch"
+							],
+							"port": "9200",
+							"path": [
+								"test",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mappings post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"mappings\": {\n      \"properties\": {\n        \"type\": { \"type\": \"keyword\" }, \n        \"name\": { \"type\": \"text\" },\n        \"user_name\": { \"type\": \"keyword\" },\n        \"email\": { \"type\": \"keyword\" },\n        \"keyword\": { \"type\": \"text\" },\n        \"created_at\": { \"type\": \"date\" }\n      }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dev.localhost:9200/test/_doc",
+							"protocol": "http",
+							"host": [
+								"dev",
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"test",
+								"_doc"
 							]
 						}
 					},
