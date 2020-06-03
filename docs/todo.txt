@@ -1,0 +1,14 @@
+vue-elasticsearch
+
+reason: "Text fields are not optimised for operations that require per-document field data like aggregations and sorting, so these operations are disabled by default. Please use a keyword field instead. Alternatively, set fielddata=true on [keywords] in order to load field data by uninverting the inverted index. Note that this can use significant memory."
+type: "illegal_argument_exception"
+
+Kibana
+
+Snapshot and Restore
+
+ElasticSearch
+
+Snapshot and Restore
+Error fetching user privileges from the server.
+[invalid_index_name_exception] Invalid index name [_security], must not start with '_', '-', or '+', with { index_uuid="_na_" & index="_security" }
