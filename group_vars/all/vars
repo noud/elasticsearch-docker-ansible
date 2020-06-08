@@ -1,6 +1,6 @@
 server_user: "{{vault_server_user}}"
 
-storage_location: /data
+storage_location: /data-es
 workspace_location: "{{ lookup('env','HOME') }}/workspace"
 
 global_packages:

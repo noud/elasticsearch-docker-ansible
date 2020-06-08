@@ -33,9 +33,9 @@ Add this content
 ```
 vault_server_user: super_user
 vault_sudo_pass: secret
-vault_psql_pass: 
-vault_docker_hub_username: super_user
-vault_docker_hub_password: secret
+vault_psql_pass: another_secret
+vault_docker_hub_username: hub_user
+vault_docker_hub_password: hub_secret
 ```
 
 # [📁 ElasticSearch Docker Ansible](http://github.com/noud/elasticsearch-docker-ansible#elastics-kibana-elasticsearch-and-apaches-manifoldcf-in-docker-containers-provisioned-by-red-hats-ansible)

@@ -31,7 +31,7 @@
 
 - name: create data docker directory
   file:
-    path: "/data/docker"
+    path: "{{storage_location}}/docker"
     state: directory
     mode: 0755
     owner: root
