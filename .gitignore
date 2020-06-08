@@ -1,2 +1,4 @@
 # ansible-runner
 artifacts/*
+
+group_vars/all/vault
