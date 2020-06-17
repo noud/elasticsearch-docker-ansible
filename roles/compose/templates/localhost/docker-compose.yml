@@ -7,9 +7,7 @@ services:
       - .:/code
     ports:
       - "8080:8080"
-    networks:
-      - elastic
-    # network_mode: "bridge"
+    network_mode: "host"
     volumes:
       - "{{workspace_location}}/vue-elasticsearch/example:/code"
   dejavu:
@@ -32,9 +30,6 @@ services:
     depends_on:
       - es01
     network_mode: "host"
-    # networks:
-    #   - elastic
-    # network_mode: bridge
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
     container_name: es01
@@ -54,8 +49,7 @@ services:
       - "{{backup_location}}/repo2:/backup"
     ports:
       - 9200:9200
-    networks:
-      - elastic
+    network_mode: "host"
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
     container_name: es02
@@ -73,8 +67,7 @@ services:
     volumes:
       - data02:/usr/share/elasticsearch/data
       - "{{backup_location}}/repo2:/backup"
-    networks:
-      - elastic
+    network_mode: "host"
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
     container_name: es03
@@ -92,8 +85,7 @@ services:
     volumes:
       - data03:/usr/share/elasticsearch/data
       - "{{backup_location}}/repo2:/backup"
-    networks:
-      - elastic
+    network_mode: "host"
   mf:
     image: "{{crawler_image}}"
     networks:
@@ -143,7 +135,5 @@ volumes:
   data03:
     driver: local
 networks:
-  elastic:
-    driver: bridge
   crawler:
     driver: bridge
