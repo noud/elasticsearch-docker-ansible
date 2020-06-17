@@ -28,6 +28,7 @@
 - name: Install pip packages
   pip:
     name: "{{ pip_packages }}"
+    extra_args: --ignore-installed PyYAML
 
 - name: create data docker directory
   file:

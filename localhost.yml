@@ -1,23 +1,30 @@
 - hosts: localhost
   user: super_user
   become: yes
+  vars_files:
+    - [ "group_vars/all/{{ ansible_facts['os_family'] }}.yml" ]
 
   roles:
     - role: packages
+    - role: packages_os
 
+    - role: pip
+
+    - role: docker_repo_rpm
+      when: ansible_facts['os_family'] == 'RedHat'
+    - role: docker_repo_deb
+      when: ansible_facts['os_family'] == 'Debian'
     - role: docker
+    - role: files-directories
+      tags:
+        - directories
+    - role: docker-login
+      tags:
+        - deploy-changes
 
     - role: virtual-memory
       tags:
         - memory
-
-    - role: files-directories
-      tags:
-        - directories
-
-    - role: docker-login
-      tags:
-        - deploy-changes
 
     - role: compose
       tags: 

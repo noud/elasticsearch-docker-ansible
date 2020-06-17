@@ -1,0 +1,5 @@
+os_release: "{{ ansible_distribution_release }}"
+os_packages:
+  - ca-certificates
+  - gnupg-agent
+  - software-properties-common

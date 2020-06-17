@@ -1,37 +1,14 @@
+workspace_location: "{{ lookup('env','HOME') }}/workspace"
 server_user: "{{vault_server_user}}"
 
 storage_location: /data-es
-workspace_location: "{{ lookup('env','HOME') }}/workspace"
 
-global_packages:
-  - git
-  - curl
-  - python3-pip
-
-os: focal
-# or centos7
-
-# rename to os_packages to activate
-centos7_packages:
-  - epel-release
-  - yum-utils
-
-# ubuntu focal
-os_packages:
-
-pip_packages:
-  - docker
-  - PyYAML
-  - docker-compose
-
-docker_hub_username: "{{vault_docker_hub_username}}"
-docker_hub_password: "{{vault_docker_hub_password}}"
-
+ansible_releasever: 2.9.9
+ansible_basearch: x86_64
 elastic_version: 7.7.0
 #
 # @todo _doc
 # 6.8.9
-
 postgres_version: 11.8
 #
 # @todo manifoldcf
@@ -42,3 +19,18 @@ postgres_version: 11.8
 # "message": "Loading the fielddata on the _id field is deprecated and will be removed in future versions.
 # If you require sorting or aggregating on this field you should also include the id in the body of your documents,
 # and map this field as a keyword field that has [doc_values] enabled
+
+global_packages:
+  - git
+  - curl
+
+pip_packages:
+  - docker
+  - docker-compose
+
+os: "{{ ansible_distribution|lower }}"
+ansible_machine: "{{ ansible_machine }}"
+python: "{{ ansible_python.executable }}"
+server_user: "{{ vault_server_user }}"
+docker_hub_username: "{{vault_docker_hub_username}}"
+docker_hub_password: "{{vault_docker_hub_password}}"

@@ -1,0 +1,8 @@
+- name: Copy create PIP shell script
+  template:
+    src: "python-pip-install.sh"
+    dest: /tmp
+    mode: u=x
+
+- name: Create PIP.
+  shell: /tmp/python-pip-install.sh

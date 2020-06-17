@@ -1,0 +1,4 @@
+os_version: "{{ distribution_major_version }}"
+os_packages:
+  - gcc
+  - python-devel
