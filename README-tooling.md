@@ -40,19 +40,21 @@ vault_docker_hub_password: hub_secret
 
 # Set-up a localhost developement environment
 
-## Ansilbe w/ EPEL dependencies on [VirtualBox](http://virtualbox.org/wiki/Downloads) machine
+## Ansilbe on [VirtualBox](http://virtualbox.org/wiki/Downloads) machine
 
 - Memory 12GB disk 30GB
-- OS
+- Ansilbe install environments
+    - [Python pip](http://pypi.org/project/pip)
     - [RPM Package Manager (RPM)](https://en.wikipedia.org/wiki/RPM_Package_Manager)
         - [CentOS 7](http://centos.org) [iso image](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-2003.iso)
             - Network install source url http://mirror.centos.org/centos/7/os/x86_64/
             - Do not forget to make a user and make user superuser.
         - [Fedora 32](http://getfedora.org) [iso image](https://download.fedoraproject.org/pub/fedora/linux/releases/32/Server/x86_64/iso/Fedora-Server-netinst-x86_64-32-1.6.iso)
+        - [Red Hat 8.2](http://redhat.com) @todo untested
     - [Advanced Package Tool (APT)](http://en.wikipedia.org/wiki/APT_(software))
         - [Debian 10](http://debian.org) [iso image](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.4.0-amd64-netinst.iso)
         - [Ubuntu focal](http://ubuntu.com) [iso image](https://releases.ubuntu.com/20.04/ubuntu-20.04-live-server-amd64.iso)
 
-There are Ansible install scripts in this projects ```bin/``` directory.
+There are shell Ansible install scripts in this projects [bin directory](http://github.com/noud/elasticsearch-docker-ansible/tree/master/bin).
 
 # [📁 ElasticSearch Docker Ansible](http://github.com/noud/elasticsearch-docker-ansible#elastics-kibana-elasticsearch-and-apaches-manifoldcf-in-docker-containers-provisioned-by-red-hats-ansible)
