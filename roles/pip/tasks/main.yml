@@ -1,8 +1,13 @@
-- name: Copy create PIP shell script
-  template:
-    src: "python-pip-install.sh"
-    dest: /tmp
-    mode: u=x
+- name: Download get-pip
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+    mode: '0500'
 
-- name: Create PIP.
-  shell: /tmp/python-pip-install.sh
+- name: Execute get-pip
+  command: "{{ python }} /tmp/get-pip.py"
+
+- name: Remove downloaded get-pip
+  file:
+    path: /tmp/get-pip.py
+    state: absent
