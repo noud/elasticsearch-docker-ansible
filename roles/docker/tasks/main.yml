@@ -18,6 +18,13 @@
     src: "daemon.json"
     dest: "/etc/docker/daemon.json"
 
+- name: add server user to docker gropu
+  user:
+    name: '{{ server_user }}'
+    groups: 
+      - docker
+    append: yes
+
 - name: Start docker
   systemd:
     daemon_reload: yes
