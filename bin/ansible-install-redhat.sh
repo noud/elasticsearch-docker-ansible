@@ -1,3 +1,2 @@
 #!/usr/bin/env sh
-# @todo untested
-sudo yum install ansible
+sudo yum install -y ansible
