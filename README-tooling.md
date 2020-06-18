@@ -1,22 +1,24 @@
 # Tooling
 
+Add Git then clone this project and cd into it. There are shell scripts for Ansible install in this projects [bin directory](http://github.com/noud/elasticsearch-docker-ansible/tree/master/bin).
+Minimal requirement is 12GB memory and a disk 30GB disk.
+
 ## Create test cluster
 
-Remove previous cluster.
+Now you have Git, this project and Ansible you can provision a new cluster.
+
+```sh
+ansible-playbook -i _tst localhost.yml --ask-vault-pass
+```
+If there would be a previous cluster you can remove the previous cluster.
 
 ```sh
 sudo rm -r /home/$USER/.ansible /data
 ```
 
-Provision new cluster.
-
-```sh
-ansible-playbook -i _tst localhost.yml --ask-vault-pass
-```
-
 ## Create Ansible vault
 
-Remove previous vault.
+First time you do not have a vault or you need to remove the previous vault.
 
 ```sh
 rm group_vars/all/vault
@@ -38,23 +40,6 @@ vault_docker_hub_username: hub_user
 vault_docker_hub_password: hub_secret
 ```
 
-# Set-up a localhost developement environment
-
-## Ansilbe on [VirtualBox](http://virtualbox.org/wiki/Downloads) machine
-
-- Memory 12GB disk 30GB
-- Ansilbe install environments
-    - [Python pip](http://pypi.org/project/pip)
-    - [RPM Package Manager (RPM)](http://en.wikipedia.org/wiki/RPM_Package_Manager)
-        - [CentOS 7](http://centos.org) [iso image](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-2003.iso)
-            - Network install source url http://mirror.centos.org/centos/7/os/x86_64/
-            - Do not forget to make a user and make user superuser.
-        - [Fedora 31](http://getfedora.org) [iso image](http://download.fedoraproject.org/pub/fedora/linux/releases/31/Server/x86_64/iso/Fedora-Server-netinst-x86_64-31-1.9.iso)
-        - [Red Hat 8.2](http://redhat.com) @todo untested
-    - [Advanced Package Tool (APT)](http://en.wikipedia.org/wiki/APT_(software))
-        - [Debian 10](http://debian.org) [iso image](http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.4.0-amd64-netinst.iso)
-        - [Ubuntu focal](http://ubuntu.com) [iso image](http://releases.ubuntu.com/20.04/ubuntu-20.04-live-server-amd64.iso)
-
-There are shell Ansible install scripts in this projects [bin directory](http://github.com/noud/elasticsearch-docker-ansible/tree/master/bin).
+Now run the ```ansible-playbook``` command again.
 
 # [📁 ElasticSearch Docker Ansible](http://github.com/noud/elasticsearch-docker-ansible#elastics-kibana-elasticsearch-and-apaches-manifoldcf-in-docker-containers-provisioned-by-red-hats-ansible)
