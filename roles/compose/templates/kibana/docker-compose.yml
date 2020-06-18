@@ -1,0 +1,6 @@
+version: '2.2'
+services:
+  kibana:
+    extends:
+      file: localhost.yml
+      service: kibana

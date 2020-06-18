@@ -1,0 +1,21 @@
+version: '2.2'
+services:
+  es01:
+    extends:
+      file: localhost.yml
+      service: es01
+  es02:
+    extends:
+      file: localhost.yml
+      service: es02
+  es03:
+    extends:
+      file: localhost.yml
+      service: es03
+volumes:
+  data01:
+    driver: local
+  data02:
+    driver: local
+  data03:
+    driver: local

@@ -1,0 +1,14 @@
+version: '2.2'
+services:
+  mf:
+    extends:
+      file: localhost.yml
+      service: mf
+  phppgadmin:
+    extends:
+      file: localhost.yml
+      service: phppgadmin
+  db:
+    extends:
+      file: localhost.yml
+      service: db

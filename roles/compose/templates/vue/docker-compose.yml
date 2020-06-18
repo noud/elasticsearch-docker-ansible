@@ -1,0 +1,6 @@
+version: '2.2'
+services:
+  vue:
+    extends:
+      file: localhost.yml
+      service: vue

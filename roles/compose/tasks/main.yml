@@ -5,6 +5,20 @@
 #     xpath: /configuration/property@name@value
 #     value: "{{ psql_pass }}"
 
+- name: Copy Master File
+  template: 
+    src: "{{ item }}" 
+    dest: "{{storage_location}}/docker/localhost.yml"
+  with_fileglob:
+    - "../templates/localhost/docker-compose.yml"
+
+- name: Copy Master Files
+  template: 
+    src: "{{ item }}" 
+    dest: "{{storage_location}}/docker/{{ item | basename }}"
+  with_fileglob:
+    - "../templates/localhost/*"
+
 - name: Copy Files
   template: 
     src: "{{ item }}" 
