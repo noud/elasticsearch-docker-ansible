@@ -2,11 +2,12 @@
   user: super_user
   become: yes
   vars_files:
-    - [ "group_vars/all/{{ ansible_facts['os_family'] }}.yml" ]
+    - [ "group_vars/all/{{ ansible_facts['distribution'] }}.yml" ]
 
   roles:
     - role: packages
     - role: packages_os
+      when: ansible_facts['distribution'] != 'Fedora'
 
     - role: pip
 
