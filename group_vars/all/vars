@@ -1,5 +1,4 @@
 workspace_location: "{{ lookup('env','HOME') }}/workspace"
-server_user: "{{vault_server_user}}"
 
 storage_location: /data-es
 
