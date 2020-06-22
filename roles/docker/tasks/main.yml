@@ -1,7 +1,7 @@
 - name: Install Docker CE
-  yum:
+  package:
     name: docker-ce
-    state: latest
+    state: present
   with_items: 
     - "{{ os }}-docker"
 

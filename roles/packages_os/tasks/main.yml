@@ -1,4 +1,4 @@
 - name: Install OS packages
-  yum:
-    update_cache: yes
+  package:
     name: "{{ os_packages }}"
+    state: present
