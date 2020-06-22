@@ -10,10 +10,10 @@
 #127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
 
 [es]
-127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
+10.0.2.2 ansible_connection=ssh ansible_user=noud ansible_sudo_pass=noud
 
 [crawler]
-#127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
+127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
 
 # all services
 
