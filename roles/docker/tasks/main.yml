@@ -26,11 +26,10 @@
     append: yes
 
 - name: Start docker
-  systemd:
-    daemon_reload: yes
+  service:
     enabled: yes
     name: docker
-    state: started
+    state: restarted
 
 - name: Install pip packages
   pip:

@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: crawler es
   user: super_user
   become: yes
   vars_files:
