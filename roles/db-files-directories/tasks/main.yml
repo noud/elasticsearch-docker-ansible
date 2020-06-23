@@ -1,0 +1,9 @@
+- name: create database directories
+  file:
+    path: "{{ storage_location }}/{{item}}"
+    state: directory
+    mode: 0755
+    owner: '1000'
+    group: '1000'
+  with_items:
+    - db

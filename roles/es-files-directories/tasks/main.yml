@@ -1,4 +1,4 @@
-- name: create directories
+- name: create elasticsearch directories
   file:
     path: "{{ storage_location }}/{{item}}"
     state: directory
@@ -6,11 +6,10 @@
     owner: '1000'
     group: '1000'
   with_items:
-    - data
+    - data01
+    - data02
+    - data03
     - synonyms
-    - db
-    - docker
-    - docker_data
 
 - name: create default synonyms.txt
   copy:

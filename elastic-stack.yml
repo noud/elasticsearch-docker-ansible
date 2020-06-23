@@ -16,16 +16,29 @@
     - role: docker_repo_deb
       when: ansible_facts['os_family'] == 'Debian'
     - role: docker
-    - role: files-directories
+    - role: docker-files-directories
       tags:
         - directories
     - role: docker-login
       tags:
         - deploy-changes
 
+    # containers prerequests
+
+    # es
     - role: virtual-memory
       tags:
         - memory
+    - role: es-files-directories
+      tags:
+        - directories
+
+    # crawler
+    - role: db-files-directories
+      tags:
+        - directories
+
+    # containers content
 
     - role: compose
       tags: 

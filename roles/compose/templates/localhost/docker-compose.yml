@@ -41,10 +41,8 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - data01:/usr/share/elasticsearch/data
+      - "{{storage_location}}/data01:/usr/share/elasticsearch/data"
       - "{{backup_location}}/repo2:/backup"
-    ports:
-      - 9200:9200
     network_mode: "host"
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
@@ -61,7 +59,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - data02:/usr/share/elasticsearch/data
+      - "{{storage_location}}/data02:/usr/share/elasticsearch/data"
       - "{{backup_location}}/repo2:/backup"
     network_mode: "host"
   es03:
@@ -79,7 +77,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - data03:/usr/share/elasticsearch/data
+      - "{{storage_location}}/data03:/usr/share/elasticsearch/data"
       - "{{backup_location}}/repo2:/backup"
     network_mode: "host"
   mf:
@@ -95,13 +93,14 @@ services:
   phppgadmin:
     image: "{{phppgadmin_image}}"
     environment:
-      - "PHP_PG_ADMIN_SERVER_HOST=db"
-      - "PHP_PG_ADMIN_EXTRA_LOGIN_SECURITY=false"
-      - "PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}"
+      - PHP_PG_ADMIN_SERVER_DESC=ManifoldCF
+      - PHP_PG_ADMIN_SERVER_HOST=db
+      - PHP_PG_ADMIN_EXTRA_LOGIN_SECURITY=false
+      - PGADMIN_DEFAULT_EMAIL=postgres
       - "PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}"
+    network_mode: "bridge"
     ports:
-        - "8082:80"
-    network_mode: "host"
+        - "{{ phppgadmin_port }}:80"
   db:
     image: "{{postgres_image}}"
     ports:
