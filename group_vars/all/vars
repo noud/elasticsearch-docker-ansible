@@ -27,6 +27,8 @@ pip_packages:
   - docker
   - docker-compose
 
+phppgadmin_port: 8080
+
 os: "{{ ansible_distribution|lower }}"
 ansible_machine: "{{ ansible_machine }}"
 python: "{{ ansible_python.executable }}"
