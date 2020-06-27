@@ -1,21 +1,16 @@
 # specific service
 
 [vue]
-#127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
+#10.0.2.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
 
 [dejavu]
-#127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
+#10.0.2.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
 
 [kibana]
-#127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
+#10.0.2.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
 
 [es]
 10.0.2.2 ansible_connection=ssh ansible_user={{vault_remote_ssh_user}} ansible_sudo_pass={{vault_remote_ssh_pass}}
 
 [crawler]
-127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
-
-# all services
-
-[localhost]
-#127.0.0.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}
+10.0.2.1 ansible_connection=local ansible_sudo_pass={{vault_sudo_pass}}

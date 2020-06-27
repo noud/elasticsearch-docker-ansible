@@ -1,11 +1,16 @@
-- hosts: es
-  user: "{{ vault_remote_ssh_user }}"
+- hosts: crawler es
+  user: "{{ server_user }}"
   become: yes
   roles:
+    # es
     - role: virtual-memory
       tags:
         - memory
     - role: es-files-directories
+      tags:
+        - directories
+    # crawler
+    - role: db-files-directories
       tags:
         - directories
 - import_playbook: localhost.yml

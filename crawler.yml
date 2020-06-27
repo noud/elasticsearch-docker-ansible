@@ -1,1 +1,8 @@
-- include: localhost.yml
+- hosts: crawler
+  user: "{{ server_user }}"
+  become: yes
+  roles:
+    - role: db-files-directories
+      tags:
+        - directories
+- import_playbook: localhost.yml

@@ -1,5 +1,5 @@
-- hosts: crawler es
-  user: super_user
+- hosts: all
+  user: "{{ server_user }}"
   become: yes
   vars_files:
     - [ "group_vars/all/{{ ansible_facts['distribution'] }}.yml" ]
@@ -23,25 +23,6 @@
       tags:
         - deploy-changes
 
-    # containers prerequests
-
-    # es
-    - role: virtual-memory
-      tags:
-        - memory
-    - role: es-files-directories
-      tags:
-        - directories
-
-    # crawler
-    - role: db-files-directories
-      tags:
-        - directories
-
-    # containers content
-
     - role: compose
       tags: 
         - deploy-changes
-
-

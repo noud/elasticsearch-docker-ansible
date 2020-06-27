@@ -5,7 +5,7 @@
     mode: '0500'
 
 - name: Execute get-pip
-  command: "{{ python }} /tmp/get-pip.py"
+  command: "{{ python }} /tmp/get-pip.py --user"
 
 - name: Remove downloaded get-pip
   file:

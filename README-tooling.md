@@ -7,10 +7,11 @@ Minimal requirement is 12GB memory and a disk 30GB disk.
 
 Now you have Git, this project and Ansible you can provision a new cluster with all services.
 ```sh
-ansible-playbook -i _tst elastic-stack.yml --ask-vault-pass
+ansible-playbook -i _tst localhost.yml --ask-vault-pass
 ```
 Just one service is installed is possible like so
 ```sh
+ansible-playbook -i _tst crawler.yml --ask-vault-pass
 ansible-playbook -i _tst es.yml --ask-vault-pass
 ```
 Possible values are ```crawler dejavu es kibana vue```.
@@ -30,8 +31,8 @@ Add this content
 vault_server_user: super_user
 vault_sudo_pass: secret
 vault_psql_pass: postgres
-vault_docker_hub_username: hub_user
-vault_docker_hub_password: hub_secret
+vault_docker_hub_user: hub_user
+vault_docker_hub_pass: hub_secret
 vault_remote_ssh_user: remote_ssh_user
 vault_remote_ssh_pass: remote_ssh_secret
 ```

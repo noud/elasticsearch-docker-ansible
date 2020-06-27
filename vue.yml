@@ -1,1 +1,4 @@
-- include: localhost.yml
+- hosts: vue
+  user: "{{ server_user }}"
+  become: yes
+- import_playbook: localhost.yml

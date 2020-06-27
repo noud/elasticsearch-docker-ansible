@@ -27,9 +27,12 @@ pip_packages:
   - docker
   - docker-compose
 
+# phppgadmin_port: "{{ lookup('env','PHPPGADMIN_PORT') }}"
+phppgadmin_port: 8080
+
 os: "{{ ansible_distribution|lower }}"
 ansible_machine: "{{ ansible_machine }}"
 python: "{{ ansible_python.executable }}"
 server_user: "{{ vault_server_user }}"
-docker_hub_username: "{{vault_docker_hub_username}}"
-docker_hub_password: "{{vault_docker_hub_password}}"
+docker_hub_username: "{{vault_docker_hub_user}}"
+docker_hub_password: "{{vault_docker_hub_pass}}"

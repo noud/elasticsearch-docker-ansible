@@ -1,31 +1,7 @@
 env: tst
 type: localhost
 
-# apache_image: php:7.3.16-apache-stretch
-# apache_port: 81
-# nginx_image: nginx
-# nginx_port: 82
-vue_image: ebiven/vue-cli
-
 kibana_image: docker.elastic.co/kibana/kibana:{{ elastic_version }}
-dejavu_image: appbaseio/dejavu
-backup_location: /backup
-elastic_image: docker.elastic.co/elasticsearch/elasticsearch:{{ elastic_version }}
-elastic_memory: 512m
-
-crawler_image: elcom/manifoldcf
-crawler_memory: 512m
-phppgadmin_image: dockage/phppgadmin
-postgres_image: index.docker.io/postgres:{{ postgres_version }}
-psql_pass: "{{vault_psql_pass}}"
 
 all_images:
-  - "{{vue_image}}"
-  # - "{{nginx_image}}"
-  # - "{{apache_image}}"
-  - "{{dejavu_image}}"
   - "{{kibana_image}}"
-  - "{{elastic_image}}"
-  - "{{crawler_image}}"
-  - "{{phppgadmin_image}}"
-  - "{{postgres_image}}"
