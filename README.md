@@ -18,7 +18,7 @@ React and Vue.js front end microservices and ElasticSearch cluster having 3 to n
         * [Postgresql](http://postgresql.org)
 ## Install environments
 - [Python](http://python.org) ([pip](http://pypi.org/project/pip))
-- [Linux](http://github.com/torvalds/linux)
+- [🐧Linux](http://github.com/torvalds/linux)
     - [RPM](http://en.wikipedia.org/wiki/RPM_Package_Manager)
         - [CentOS 7](http://centos.org) [iso](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-2003.iso)
             <!-- - Network install source url http://mirror.centos.org/centos/7/os/x86_64/
