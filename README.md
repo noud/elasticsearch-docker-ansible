@@ -12,14 +12,11 @@ React and Vue.js front end microservices and ElasticSearch cluster having 3 to n
 * [Postmaster](http://postman.com) ([collection](http://github.com/noud/elasticsearch-docker-ansible/blob/master/docs/postman_collection.json))
 
 ## Service containers
-
 * [Kibana](http://elastic.co/kibana)
 * [ElasticSearch](http://elastic.co/elasticsearch)
     * [ManifoldCF](http://manifoldcf.apache.org)
         * [Postgresql](http://postgresql.org)
-
 ## Install environments
-
 - [Python](http://python.org) ([pip](http://pypi.org/project/pip))
 - [Linux](http://github.com/torvalds/linux)
     - [RPM](http://en.wikipedia.org/wiki/RPM_Package_Manager)
@@ -31,7 +28,5 @@ React and Vue.js front end microservices and ElasticSearch cluster having 3 to n
     - [APT](http://en.wikipedia.org/wiki/APT_(software))
         - [Debian 10](http://debian.org) [iso](http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.4.0-amd64-netinst.iso)
         - [Ubuntu focal](http://ubuntu.com) [iso](http://releases.ubuntu.com/20.04/ubuntu-20.04-live-server-amd64.iso)
-
 ## [Tooling](http://github.com/noud/elasticsearch-docker-ansible/blob/master/README-tooling.md)
-
-# [📁 Portfolio](http://github.com/noud/portfolio#portfolio-repositories-index)
+# [👨‍💻noud](http://github.com/noud)
